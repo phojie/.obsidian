@@ -1,0 +1,12 @@
+{
+  "accentColor": "#50b300",
+  "interfaceFontFamily": "Fira Code",
+  "textFontFamily": "Fira Code",
+  "translucency": false,
+  "cssTheme": "",
+  "baseFontSize": 19,
+  "baseFontSizeAction": true,
+  "enabledCssSnippets": [
+    "obsidian"
+  ]
+}

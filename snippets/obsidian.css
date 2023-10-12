@@ -1,0 +1,337 @@
+:root {
+  --font-size-normal: 18px;
+  --font-size-code: 15px;
+  --font-size-side-dock: 15px;
+  --font-size-side-dock-title: 18px;
+  --font-size-status-bar: 15px;
+  --font-size-h1: 30px;
+  --font-size-h2: 25px;
+  --font-size-h3: 21px;
+  --font-size-h4: 20px;
+  --font-size-h5: 19px;
+  --font-size-h6: 18px;
+}
+
+.theme-light,
+.theme-dark {
+  --background-primary: #0f172a;
+  --background-secondary: #0f172a;
+
+  --border-color: #1e293b; 
+  --divider-color: #1e293b; 
+  --modal-border-color: #1e293b;
+  --hr-color: #1e293b;
+
+  --background-primary-alt: #1e293b;
+  --background-secondary-alt: #020617;
+
+  --color-base-00: #020617;
+  --color-base-05: #0f172a;
+  --color-base-10: #1e293b;
+  --color-base-20: #1e293b;
+  --color-base-25: #1e293b;
+  --color-base-30: #1e293b;
+  --color-base-35: #334155;
+  --color-base-40: #475569;
+  --color-base-50: #64748b;
+  --color-base-60: #f1f5f9;
+  --color-base-70: #f8fafc;
+  --color-base-100: #ffffff;
+
+  --text-title-h1: #ec4899;
+  --text-title-h2: #3b82f6;
+  --text-title-h3: #a3e635;
+  --text-title-h4: #fb923c;
+  --text-title-h5: #4ade80;
+  --text-title-h6: #06b6d4;
+  --inline-code: #8b5cf6;
+  --code-block: #0ea5e9;
+  --pre-code: #44475a;
+  --border-color: #2b2727; /*also like transparent*/
+
+  --inline-title-color: var(--color-accent-1);
+}
+
+.cm-strong {
+  color: var(--text-accent);
+}
+
+.cm-em {
+  color: var(--text-accent);
+}
+
+
+
+/***************************************/
+/*            Hide side bar            */
+/***************************************/
+.workspace-ribbon:not(:hover) .workspace-ribbon-collapse-btn,
+.workspace-ribbon:not(:hover) .side-dock-actions,
+.workspace-ribbon:not(:hover) .side-dock-settings {
+  display: none;
+  transition: all 300ms ease-in-out;
+}
+.workspace-ribbon:not(:hover) {
+  width: 0px;
+  transition: all 300ms ease-in-out;
+}
+.workspace-split.mod-left-split {
+  margin-left: 0px;
+}
+.workspace-split.mod-right-split {
+  margin-right: 0px;
+}
+
+/***************************************/
+/*           width of content          */
+/***************************************/
+.markdown-source-view.is-readable-line-width .CodeMirror {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.markdown-preview-view.is-readable-line-width .markdown-preview-section {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* shift sticky position, so titles will stack up to the left */
+/* This will currently stack to a maximum of 10 before resetting */
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-8) {
+  left: calc(var(--sticky-left) * 0);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-7) {
+  left: calc(var(--sticky-left) * 1);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-6) {
+  left: calc(var(--sticky-left) * 2);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-5) {
+  left: calc(var(--sticky-left) * 3);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-4) {
+  left: calc(var(--sticky-left) * 4);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-3) {
+  left: calc(var(--sticky-left) * 5);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-2) {
+  left: calc(var(--sticky-left) * 6);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n-1) {
+  left: calc(var(--sticky-left) * 7);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n+0) {
+  left: calc(var(--sticky-left) * 8);
+}
+.mod-root.workspace-split.mod-vertical > div:nth-child(10n+1) {
+  left: calc(var(--sticky-left) * 9);
+}
+/* now it's time for the fancy vertical titles */
+/* first we'll add a bit of gap for the title to sit inside of */
+.workspace-leaf-content {
+  padding-right: var(--sticky-left);
+  position: relative;
+}
+/* this is where the magic happens */
+.view-header {
+  writing-mode: vertical-lr;
+  border-right: 1px solid var(--border-color);
+  border-left: 0px !important;
+  border-top: none;
+  border-bottom: none;
+  height: auto;
+  width: 36px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--background-primary) !important;
+}
+/* fix the long-title-obscuring shadows */
+.view-header-title-container:after {
+  width: 100%;
+  height: 30px;
+  top: unset;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent, var(--background-primary)) !important;
+}
+/* unset the title container height and swap padding */
+.view-header-title-container {
+  height: unset;
+  padding-left: unset;
+  padding-top: 5px;
+}
+/* active titles have different border colours */
+.workspace-leaf.mod-active .view-header {
+  background-color: var(--background-alt) !important;
+border-right: 3px solid var(--interactive-accent) !important;
+  border-left: 0px;
+  border-bottom: none;
+}
+/* swap the padding/margin around for the header and actions icons */
+.view-header-icon,
+.view-actions {
+  padding: 10px 5px;
+}
+.view-action {
+  margin: 8px 0;
+}
+/* get rid of the gap left by the now-missing horizontal title */
+.view-content {
+  height: 100%;
+}
+/* make the fake drop target overlay have a background so you can see it. */
+/* TODO: figure out how the fake target overlay works so we can put the title back, too */
+.workspace-fake-target-overlay {
+  background-color: var(--background-primary);
+}
+/*preview padding too small*/
+.markdown-preview-view,
+.mod-single-child .markdown-preview-view {
+  font-family: var(--font-family-editor);
+  font-size: var(--font-size-normal);
+}
+
+/***************************************/
+/*             table                   */
+/***************************************/
+th {
+  font-weight: 800 !important;
+}
+.markdown-preview-view th {
+  font-weight: 800;
+  background-color: var(--background-secondary) !important;
+}
+thead {
+  border-bottom: 3px solid var(--background-modifier-border);
+}
+.table {
+  padding: 4px;
+  line-height: normal;
+  display: block;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/***************************************/
+/*               Checkbox              */
+/***************************************/
+.markdown-preview-view .task-list-item-checkbox {
+  -webkit-appearance: none;
+  top: 0.2em !important;
+  right: 8px;
+  box-sizing: border-box;
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  box-shadow: 0 0 0.1em var(--text-muted);
+}
+.markdown-preview-view .task-list-item-checkbox:checked::before {
+  content: "✓";
+  position: absolute;
+  left: -1px;
+  top: -3px;
+  color: var(--text-accent);
+  font-size: 1rem;
+  line-height: 1.25rem;
+  width: 1.2rem;
+  text-align: center;
+  text-shadow: 0 0 0.1rem var(--text-accent);
+}
+.markdown-preview-view ul > li.task-list-item.is-checked {
+  text-decoration: none;
+}
+.checkbox-container {
+  background-color: var(--background-primary);
+}
+
+/**************************************/
+/*  note header bar for non-andy mode */
+/*        activated in dark mode      */
+/**************************************/
+.cm-header-1 {
+  font-size: var(--font-size-h1);
+  color: var(--text-title-h1);
+}
+.cm-header-2 {
+  font-size: var(--font-size-h2);
+  color: var(--text-title-h2);
+}
+.cm-header-3 {
+  font-size: var(--font-size-h3);
+  color: var(--text-title-h3);
+}
+.cm-header-4 {
+  font-size: var(--font-size-h4);
+  color: var(--text-title-h4);
+}
+.cm-header-5 {
+  font-size: var(--font-size-h5);
+  color: var(--text-title-h5);
+}
+.cm-header-6 {
+  font-size: var(--font-size-h6);
+  color: var(--text-title-h6);
+}
+.markdown-preview-view h1 {
+  font-size: var(--font-size-h1);
+  color: var(--text-title-h1);
+}
+.markdown-preview-view h2 {
+  font-size: var(--font-size-h2);
+  color: var(--text-title-h2);
+}
+.markdown-preview-view h3 {
+  font-size: var(--font-size-h3);
+  color: var(--text-title-h3);
+}
+.markdown-preview-view h4 {
+  font-size: var(--font-size-h4);
+  color: var(--text-title-h4);
+}
+.markdown-preview-view h5 {
+  font-size: var(--font-size-h5);
+  color: var(--text-title-h5);
+}
+.markdown-preview-view h6 {
+  font-size: var(--font-size-h6);
+  color: var(--text-title-h6);
+}
+.markdown-preview-view h1 {
+  font-weight: 900;
+}
+.markdown-preview-view h2 {
+  font-weight: 800;
+}
+.markdown-preview-view h3 {
+  font-weight: 700;
+}
+.markdown-preview-view h4 {
+  font-weight: 600;
+}
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+  font-weight: 500;
+}
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task=" "]) {
+  text-decoration: none;
+}
+.markdown-source-view.mod-cm6 .is-unresolved {
+  opacity: 1;
+}
+.markdown-source-view.mod-cm6 .is-unresolved .cm-hmd-internal-link::after {
+  content: "↩️";
+  width: 30px;
+  height: 30px;
+  margin-left: 3px;
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+.statediagram-note rect {
+  fill: var(--background-secondary-alt) !important;
+  stroke: #fff !important;
+}
